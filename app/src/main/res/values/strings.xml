@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">LeLux</string>
+    <string name="lightenHead">Lighten</string>
+    <string name="darkenHead">Darken</string>
+    <string name="Tag">DebugMessage</string>
+</resources>
