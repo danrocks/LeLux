@@ -31,7 +31,7 @@ import android.widget.TextView;
 
 import com.dantastic.lelux.databinding.WidgetViewBinding;
 
-public class MainActivity extends AppCompatActivity  implements CompoundButton.OnCheckedChangeListener{
+public class MainActivity extends AppCompatActivity  {
     private BrightnessCommands brightnessCommands;
     private RecyclerView mRecyclerView;
     private MyWidgetAdapter mAdapter;
@@ -50,14 +50,8 @@ public class MainActivity extends AppCompatActivity  implements CompoundButton.O
         }
         PopulateBrightnessCommands();
 
-        // WidgetBinding widgetBinding = new WidgetBinding();
-
-        SetUpGridViews();
         SetUpDataBindingView();
 
-
-        ((SwitchCompat)findViewById(R.id.lightenSwitch)).setOnCheckedChangeListener(this);
-        ((SwitchCompat)findViewById(R.id.darkenSwitch)).setOnCheckedChangeListener(this);
     }
 
     private void PopulateBrightnessCommands(){
@@ -100,42 +94,6 @@ public class MainActivity extends AppCompatActivity  implements CompoundButton.O
         c.close();
     }
 
-    private void SetUpGridViews(){
-        // initialize the grid View
-        GridView gridview = (GridView) findViewById(R.id.gv);
-        // set Imageadapter in GridView
-        //BrightnessSettingAdapter brightnessSettingAdapter= new BrightnessSettingAdapter(this);
-
-        BrightnessSettingAdapter brightnessSettingAdapter=new BrightnessSettingAdapter(this, R.layout.row_view,
-                brightnessCommands.brightnessCommands.toArray(new BrightnessCommand[brightnessCommands.brightnessCommands.size()] ));
-        //brightnessSettingAdapter.brightnessCommandArray=;
-        //((AdapterView<BrightnessSettingAdapter>)brightnessSettingAdapter).setOnItemClickListener
-        gridview.setAdapter(brightnessSettingAdapter);
-        Log.e(getString(R.string.Tag),"Set listener");
-
-        gridview.setOnItemClickListener(new AdapterView.OnItemClickListener()
-        {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View v,int position, long id)
-            {
-                // All this does is does is raise some debug messages
-                Log.e("DebugMessage", "item clicked");
-                Log.e("DebugMessage", "    parent: " + parent.toString());
-                Log.e("DebugMessage", "    view: " + v.toString());
-                Log.e("DebugMessage", "    position: " + Integer.toString(position));
-                Log.e("DebugMessage", "    id: " + Long.toString(id));
-                // Log.e("DebugMessage", "    getTag: " + v.getTag().toString());;
-                //Toast.makeText(getApplicationContext(),
-                //      ((TextView) v).getText(), Toast.LENGTH_SHORT).show();
-            }
-
-            public void onNothingSelected(AdapterView<?> arg0) {
-                Log.e("DebugMessage", "nought selexted");
-            }
-        });
-
-    }
-
     // Binds data to the RecyclerView via the adapter
     private void SetUpDataBindingView(){
         //initialize recycler view
@@ -151,39 +109,6 @@ public class MainActivity extends AppCompatActivity  implements CompoundButton.O
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         //GridLayoutManager gridLayoutManager = new GridLayoutManager(this,1,LinearLayoutManager.VERTICAL,false);
         //mRecyclerView.setLayoutManager(gridLayoutManager);
-    }
-
-    @Override
-    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked){
-        TextView timeText;
-        BrightnessCommand brightnessCommand;
-
-        switch(buttonView.getId()){
-            case R.id.lightenSwitch:
-                timeText= (TextView)findViewById(R.id.lightenTime);
-                brightnessCommand = brightnessCommands.GetBrightnessCommand(BrightnessSetting.LIGHTEN);
-                break;
-            case R.id.darkenSwitch:
-                timeText = (TextView)findViewById(R.id.darkenTime);
-                brightnessCommand = brightnessCommands.GetBrightnessCommand(BrightnessSetting.DARKEN);
-                break;
-            default:
-                return;
-        }
-
-        if( buttonView.isChecked()){
-            timeText.setText( "checked");
-            showTimePickerDialog(timeText,brightnessCommand);
-        }
-        else{
-            timeText.setText( "unchecked");
-            brightnessCommand.setOn(false);
-        }
-    }
-
-    public void showTimePickerDialog(TextView v, BrightnessCommand brightnessCommand){
-        DialogFragment newFragment = new TimePickerFragment(v,brightnessCommand);
-        newFragment.show(getSupportFragmentManager(),"time Picker");
     }
 
     final Integer MY_PERMISSIONS_REQUEST_WRITE_SETTINGS = 343;

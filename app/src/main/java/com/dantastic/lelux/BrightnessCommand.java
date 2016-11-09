@@ -70,7 +70,6 @@ public class BrightnessCommand extends BaseObservable {
         notifyPropertyChanged(BR.on);
     }
 
-
     public void Update( Context context, Integer hour, Integer minute, Boolean isOn){
         if(this.getHour()!=hour
                 || this.getMinute()!=minute
@@ -110,7 +109,6 @@ public class BrightnessCommand extends BaseObservable {
     @Bindable
     public String getTimeAsString(){
         return Integer.toString(getHour()) + ":" +  Integer.toString(getMinute()) ;
-
     }
 
     @Bindable
@@ -126,6 +124,5 @@ public class BrightnessCommand extends BaseObservable {
     public void showTimePickerDialog(TextView v){
         showTimePickerDialog(v,this);
     }
-
 }
 

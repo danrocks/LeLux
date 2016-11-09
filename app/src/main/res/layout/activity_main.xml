@@ -13,55 +13,6 @@
 
     tools:context="com.dantastic.lelux.MainActivity">
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/lightenHead" />
-
-        <android.support.v7.widget.SwitchCompat
-            android:id="@+id/lightenSwitch"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-          />
-
-        <TextView
-            android:id="@+id/lightenTime"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="TextView" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/darkenHead" />
-        <android.support.v7.widget.SwitchCompat
-            android:id="@+id/darkenSwitch"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Switch" />
-        <TextView
-            android:id="@+id/darkenTime"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="TextView" />
-    </LinearLayout>
-
-    <GridView
-        android:id="@+id/gv"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
 
     <view android:id="@+id/recycler_view"
         class="android.support.v7.widget.RecyclerView"
