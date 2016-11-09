@@ -1,5 +1,6 @@
 package com.dantastic.lelux;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.content.DialogInterface;
@@ -22,9 +23,12 @@ public  class TimePickerFragment extends DialogFragment implements TimePickerDia
 
     public TimePickerFragment(TextView textBox, BrightnessCommand brightnessCommand){
         //todo follow instructions re standards for fragments...
+        super();
         v = textBox;
         this.brightnessCommand=brightnessCommand;
     }
+
+
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstance){
@@ -34,22 +38,9 @@ public  class TimePickerFragment extends DialogFragment implements TimePickerDia
         int minute = brightnessCommand.getMinute()==null? c.get(Calendar.MINUTE) : brightnessCommand.getMinute();
 
         //Create a new instance of TimePickerDialog and return it
-       // note the current object is an activity htat implements the TimePickerDialog.OnSetListener interface
+       // note the current object is an activity that implements the TimePickerDialog.OnSetListener interface
         TimePickerDialog timePickerDialog = new TimePickerDialog(getActivity(), this, hour, minute, true);
-//        timePickerDialog.setOnDismissListener(new TimePickerDialog.OnDismissListener() {
-//            @Override
-//            public void onDismiss(DialogInterface dialogInterface) {
-//                Log.e(getString(R.string.Tag), "dismissed");
-//
-//            }
-//        });
-//
-//        timePickerDialog.setOnCancelListener(new TimePickerDialog.OnCancelListener() {
-//            @Override
-//            public void onCancel(DialogInterface dialogInterface) {
-//                Log.e(getString(R.string.Tag), "cancelled");
-//            }
-//        });
+
 //
         return timePickerDialog;
     }
@@ -59,7 +50,6 @@ public  class TimePickerFragment extends DialogFragment implements TimePickerDia
     public void onDismiss(DialogInterface dialog) {
         super.onDismiss(dialog);
         Log.e(getString(R.string.Tag), "dismiss 3");
-        //dialog.cancel();
     }
 
     @Override

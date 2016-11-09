@@ -6,15 +6,13 @@
             name="brightnessCommand"
             type="com.dantastic.lelux.BrightnessCommand" />
 
-        <variable
-            name="presenter"
-            type="com.dantastic.lelux.Presenter" />
+
     </data>
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="test()">
+        >
         <TextView
             android:clickable="false"
             android:id="@+id/settingTitle"
@@ -26,15 +24,14 @@
             />
         <!-- clickable=false so the click is handled by the onItemClocked handler, as opposed to the switcher's normal handler-->
         <android.support.v7.widget.SwitchCompat
-            android:id="@+id/switcher"
+            android:id="@+id/on_Off_switch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
             android:checked="@{brightnessCommand.getOn}"
+            android:layout_weight="1"
+             />
 
-            android:layout_weight="1"/>
-
-        <!--android.onClick="@{(view,brightnessCommand)->presenter.onClick(view,brightnessCommand)}"-->
+        <!--android.onClickListener="@{() -> presenter.onClick(brightnessCommand)}"-->
         <TextView
             android:id="@+id/timeToAct"
             android:layout_width="wrap_content"
@@ -43,7 +40,8 @@
             android:focusable="false"
             android:focusableInTouchMode="false"
             android:visibility="@{brightnessCommand.getOn ? View.VISIBLE : View.GONE}"
-            android:text='@{brightnessCommand.getOn?"View.VISIBLE":"View.GONE"}'
+            android:text="@{brightnessCommand.getTimeAsString}"
+
             />
     </LinearLayout>
     <!--android:text="@{brightnessCommand.getTimeAsString}"-->

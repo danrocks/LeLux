@@ -1,12 +1,20 @@
 package com.dantastic.lelux;
 
+import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.ContextWrapper;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.DialogFragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
+import android.widget.TextView;
 
 /**
  * Created by ALL on 10/4/2016.
@@ -20,13 +28,15 @@ public class BrightnessCommand extends BaseObservable {
     private Integer hour;
     private Integer minute;
     private Boolean isOn;
+    private AppCompatActivity  activity;
 
 
-    public BrightnessCommand( BrightnessSetting brightnessSetting, Integer hour, Integer minute, Boolean isOn){
+    public BrightnessCommand( BrightnessSetting brightnessSetting, Integer hour, Integer minute, Boolean isOn,AppCompatActivity  activity){
         this.brightnessSetting=brightnessSetting;
         this.hour=hour;
         this.minute=minute;
         this.isOn=isOn;
+        this.activity = activity;
     }
 
     @Bindable
@@ -106,6 +116,15 @@ public class BrightnessCommand extends BaseObservable {
     @Bindable
     public String getTitle(){
         return brightnessSetting.toString();
+    }
+
+    public void showTimePickerDialog(TextView v, BrightnessCommand brightnessCommand){
+        TimePickerFragment newFragment = new TimePickerFragment(v,brightnessCommand);
+        newFragment.show(activity.getSupportFragmentManager(),"time Picker");
+    }
+
+    public void showTimePickerDialog(TextView v){
+        showTimePickerDialog(v,this);
     }
 
 }

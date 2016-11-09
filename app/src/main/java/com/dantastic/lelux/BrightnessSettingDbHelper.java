@@ -1,5 +1,6 @@
 package com.dantastic.lelux;
 
+import android.app.Application;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
@@ -20,6 +21,7 @@ public class BrightnessSettingDbHelper extends SQLiteOpenHelper {
     Context ctx;
 
     public BrightnessSettingDbHelper(Context context){
+
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
         ctx=context;
     }

@@ -77,11 +77,26 @@ public class MyWidgetAdapter extends RecyclerView.Adapter<MyWidgetAdapter.MyBind
             super(itemView);
             Log.e(itemView.getContext().getString(R.string.Tag), "MyBindingHolder created");
             binding =DataBindingUtil.bind(itemView);
-            binding.setPresenter(new Presenter());
+
+            binding.onOffSwitch.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Log.e(view.getContext().getString(R.string.Tag), "onclick invoked");
+                    binding.getBrightnessCommand().setOn(!binding.getBrightnessCommand().getOn());
+                    if(binding.getBrightnessCommand().getOn()){
+                        binding.getBrightnessCommand().showTimePickerDialog(binding.timeToAct);
+                    }
+                }
+            });
+
         }
 
         public WidgetViewBinding getBinding(){
             return binding;
         }
+
+
+
+
     }
 }

@@ -94,7 +94,7 @@ public class MainActivity extends AppCompatActivity  implements CompoundButton.O
                     BrightnessSetting.valueOf(c.getString(c.getColumnIndexOrThrow(BrightnessSettingContract.BrightnessSettingTbl.COL_SETTING))),
                     c.getInt(c.getColumnIndexOrThrow(BrightnessSettingContract.BrightnessSettingTbl.COL_HOUR)) ,
                     c.getInt(c.getColumnIndexOrThrow(BrightnessSettingContract.BrightnessSettingTbl.COL_MINUTE)) ,
-                    c.getInt(c.getColumnIndexOrThrow(BrightnessSettingContract.BrightnessSettingTbl.COL_ON))>0));
+                    c.getInt(c.getColumnIndexOrThrow(BrightnessSettingContract.BrightnessSettingTbl.COL_ON))>0,this));
         }
 
         c.close();
@@ -138,8 +138,6 @@ public class MainActivity extends AppCompatActivity  implements CompoundButton.O
 
     // Binds data to the RecyclerView via the adapter
     private void SetUpDataBindingView(){
-
-
         //initialize recycler view
         mRecyclerView = (RecyclerView)findViewById(R.id.recycler_view);
 
@@ -149,14 +147,10 @@ public class MainActivity extends AppCompatActivity  implements CompoundButton.O
         // attach adapter to recycler view to populate items
         mRecyclerView.setAdapter(mAdapter);
 
-
-
         //set Layout manager to position items
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         //GridLayoutManager gridLayoutManager = new GridLayoutManager(this,1,LinearLayoutManager.VERTICAL,false);
         //mRecyclerView.setLayoutManager(gridLayoutManager);
-
-
     }
 
     @Override
