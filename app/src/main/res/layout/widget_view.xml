@@ -4,7 +4,7 @@
         <import name="view" type="android.view.View"/>
         <variable
             name="brightnessCommand"
-            type="com.dantastic.lelux.BrightnessCommand" />
+            type="com.dandabby.lelux.BrightnessCommand" />
 
 
     </data>
